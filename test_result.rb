@@ -5,24 +5,29 @@ science = [65, 80, 67, 35, 58, 60, 72, 75, 68, 92, 36, 50, 2, 58.5, 46, 42, 78, 
 english = [44, 87, 100, 63, 52, 60, 58, 73, 55, 86, 29, 56, 89, 23, 65, 84, 64, 27, 86, 84]
 
 class Array
+  #合計点を求める
   def sum
     inject(:+)
   end
 
+  #平均を求める
   def ave
     sum.to_f / length
   end
 
+  #分散を求める
   def var
     a = ave
     inject(0) { |i,n| i + (n - a) ** 2 } / length
   end
 
+  #標準偏差を求める
   def sd
     Math.sqrt(var)
   end
 end
 
+#偏差を求める
 def dv(score,array)
   (score - array.ave) / array.sd * 10 + 50
 end
@@ -43,6 +48,7 @@ puts ""
   puts ""
 end
 
+#降順にソートする
 science.sort!
 english.sort!
 puts "---点数ランキング---"
