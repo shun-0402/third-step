@@ -1,12 +1,12 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include<math.h>
-float ave(float*);
-float hyoujyun(float*,float);
-void hensati(float*,float*,float,float);
-float dispersion(float*,float);
-float sum(float*);
-int compare(const void *,const void*);
+float ave(float*);//平均値計算
+float hyoujyun(float*,float);//標準偏差の計算
+void hensati(float*,float*,float,float);//偏差値の計算
+//float dispersion(float*,float);
+float sum(float*);//合計点の計算
+int compare(const void *,const void*);//qsort用比較関数
 
 
 int main(){
@@ -21,26 +21,27 @@ int main(){
 	float dis_eng,dis_sci;
 
 	int i;
-
+        //平均値の計算
 	ave_eng = ave(english);
 	ave_sci = ave(science);
 
+	//標準偏差の計算
 	dev_eng = hyoujyun(english,ave_eng);
 	dev_sci = hyoujyun(science,ave_sci);
 
+	//合計点の計算
 	sum_eng = sum(english);
 	sum_sci = sum(science);
 
-	//dis_eng = dispersion(english);
-	//dis_sci = dispersion(science);
-
+	//偏差値の計算
 	hensati(english,hensati_eng,ave_eng,dev_eng);
 	hensati(science,hensati_sci,ave_sci,dev_sci);
 
+	//並び替え
 	qsort(english,sizeof(english)/sizeof(float),sizeof(float),compare);
-
 	qsort(science,sizeof(science)/sizeof(float),sizeof(float),compare);
 
+	//結果の表示
 	printf("ave_eng : %f\n",ave_eng);
 	printf("ave_science: %f\n",ave_sci);
 
